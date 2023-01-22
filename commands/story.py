@@ -39,9 +39,7 @@ class StoryDropdown(nextcord.ui.View):
 
     async def callback(self, select, interaction: nextcord.Interaction):
         if (select.values[0] == "nwhacks"):
-            await Database.testFunction()
             await Nwhacks.questionList(interaction)
-            
             
         elif (select.values[0] == "story2"):
             await interaction.send("You choosed story2")

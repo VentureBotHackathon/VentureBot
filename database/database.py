@@ -1,7 +1,4 @@
-import os
 import json
-import datetime
-import pytz
 from pymongo import MongoClient
 from nextcord.ext import commands
 
@@ -15,18 +12,15 @@ class Database(commands.Cog):
     cluster = MongoClient(configData["DATABASEPASSWORD"])
     db = cluster["VentureBot"]
     prompts = db["Prompts"]
+    images = db["Images"]
 
-    array = []
+    promptArray = []
     count = 1
-    array.append("Nothing")
+    promptArray.append("Nothing")
 
     for x in prompts.find():
         collection = "Prompt" + str(count)
-        array.append(x[collection])
+        promptArray.append(x[collection])
         count += 1
-
-    print(array[1])
-
-    print(array[5])
-
+    
 
