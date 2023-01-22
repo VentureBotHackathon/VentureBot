@@ -2,16 +2,16 @@ import nextcord
 from nextcord import Interaction
 from nextcord.ext import commands
 from storymodes.nwhacks import Nwhacks
-from database.database import Database
 from helpers.questionPrompt import QuestionPrompt
+from database.database import Database
 
 class Story(commands.Cog):
-    def __init__(self, bot):
+    def init(self, bot):
         self.bot = bot
-    
+
     @nextcord.slash_command(description="Begin a new story and start voting")
     async def story(self, interaction: Interaction):
-        await interaction.send("Message", view=StoryDropdown(timeout=None))
+        await interaction.send(Database.imgArray[1] + '\n' + "Message", view=StoryDropdown(timeout=None))
 
 class StoryDropdown(nextcord.ui.View):
     @nextcord.ui.select(
@@ -41,7 +41,7 @@ class StoryDropdown(nextcord.ui.View):
     async def callback(self, select, interaction: nextcord.Interaction):
         if (select.values[0] == "nwhacks"):
             await QuestionPrompt.fourResponseQuestion(interaction)
-            
+
         elif (select.values[0] == "story2"):
             await interaction.send("You choosed story2")
 
