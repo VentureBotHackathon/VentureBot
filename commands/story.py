@@ -3,6 +3,7 @@ from nextcord import Interaction
 from nextcord.ext import commands
 from storymodes.nwhacks import Nwhacks
 from database.database import Database
+from helpers.questionPrompt import QuestionPrompt
 
 class Story(commands.Cog):
     def __init__(self, bot):
@@ -39,7 +40,7 @@ class StoryDropdown(nextcord.ui.View):
 
     async def callback(self, select, interaction: nextcord.Interaction):
         if (select.values[0] == "nwhacks"):
-            await Nwhacks.questionList(interaction)
+            await QuestionPrompt.fourResponseQuestion(interaction)
             
         elif (select.values[0] == "story2"):
             await interaction.send("You choosed story2")

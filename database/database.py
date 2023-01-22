@@ -23,4 +23,4 @@ class Database(commands.Cog):
         promptArray.append(x[collection])
         count += 1
     
-
+    
